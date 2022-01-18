@@ -1,0 +1,165 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'sopc_clk'
+Slack : 10.920
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Setup 'altera_reserved_tck'
+Slack : 23.300
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'sopc_clk'
+Slack : 0.199
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'altera_reserved_tck'
+Slack : 0.294
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'sopc_clk'
+Slack : 14.595
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'altera_reserved_tck'
+Slack : 47.780
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Removal 'altera_reserved_tck'
+Slack : 0.926
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Removal 'sopc_clk'
+Slack : 0.964
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'sopc_clk'
+Slack : 8.865
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 48.899
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'sopc_clk'
+Slack : 11.111
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'altera_reserved_tck'
+Slack : 23.440
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'sopc_clk'
+Slack : 0.174
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.270
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'sopc_clk'
+Slack : 14.773
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'altera_reserved_tck'
+Slack : 47.947
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Removal 'altera_reserved_tck'
+Slack : 0.889
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Removal 'sopc_clk'
+Slack : 0.898
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'sopc_clk'
+Slack : 8.905
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 48.890
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'sopc_clk'
+Slack : 14.021
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'altera_reserved_tck'
+Slack : 25.357
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'altera_reserved_tck'
+Slack : 0.119
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'sopc_clk'
+Slack : 0.141
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'sopc_clk'
+Slack : 16.408
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'altera_reserved_tck'
+Slack : 49.071
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Removal 'altera_reserved_tck'
+Slack : 0.468
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Removal 'sopc_clk'
+Slack : 0.502
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'sopc_clk'
+Slack : 8.475
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 48.795
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'sopc_clk'
+Slack : 14.703
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'altera_reserved_tck'
+Slack : 25.535
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.091
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'sopc_clk'
+Slack : 0.107
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'sopc_clk'
+Slack : 16.806
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'altera_reserved_tck'
+Slack : 49.266
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Removal 'altera_reserved_tck'
+Slack : 0.411
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Removal 'sopc_clk'
+Slack : 0.450
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'sopc_clk'
+Slack : 8.431
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 48.784
+TNS   : 0.000
+
+------------------------------------------------------------
