@@ -8,14 +8,17 @@
 #include <stdio.h>
 #include <unistd.h>
 
+
+// Values of x -> x[i] = 0:step:255 -> N iterations where step,N for each testcase.
+
 //Test case 1
-#define step 5
-#define N 52
+//#define step 5
+//#define N 52
 
 
 // Test case 2
-//#define step 1/8.0
-//#define N 2041
+#define step 1/8.0
+#define N 2041
 
 /* Test case 3
  * #define step 1/1024.0
@@ -33,14 +36,14 @@ void generateVector(float x[N]){
 float sumVector(float x[], int M){
 	//YOUR CODE GOES HERE
 	float y=0;
-	for(int i=0;i<N;i++){
+	for(int i=0;i<M;i++){
 		y += x[i]+ x[i]*x[i];
 	}
 	return y;
 }
 int main()
 {
-	printf("Task2 - Test Case 1\n");
+	printf("Task2 - Test Case 2\n");
 
 	//Define input vector
 	float x[N];
@@ -66,8 +69,6 @@ int main()
 	for (i=0;i<10;i++){
 		y =y/2.0;
 	}
-	printf("Exec t1: %d\n",exec_t1);
-	printf("Exec t2: %d\n",exec_t2);
 
 	printf("Result: %d\n",(int) y);
 	return 0;

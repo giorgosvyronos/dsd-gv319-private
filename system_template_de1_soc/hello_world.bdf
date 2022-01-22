@@ -237,6 +237,21 @@ https://fpgasoftware.intel.com/eula.
 	(annotation_block (location)(rect 280 400 344 416))
 )
 (symbol
+	(rect 576 272 608 288)
+	(text "VCC" (rect 7 0 28 10)(font "Arial" (font_size 6)))
+	(text "inst1" (rect 3 5 27 18)(font "Intel Clear" )(invisible))
+	(port
+		(pt 16 16)
+		(output)
+		(text "1" (rect 19 7 27 18)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 19 7 27 18)(font "Courier New" (bold))(invisible))
+		(line (pt 16 16)(pt 16 8))
+	)
+	(drawing
+		(line (pt 8 8)(pt 24 8))
+	)
+)
+(symbol
 	(rect 608 144 1120 328)
 	(text "first_nios2_system" (rect 200 -1 332 15)(font "Arial" (font_size 10)))
 	(text "inst" (rect 8 168 26 179)(font "Arial" ))
@@ -283,21 +298,6 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 512 0)(pt 512 184))
 		(line (pt 0 184)(pt 512 184))
 		(line (pt 0 0)(pt 0 184))
-	)
-)
-(symbol
-	(rect 576 272 608 288)
-	(text "VCC" (rect 7 0 28 10)(font "Arial" (font_size 6)))
-	(text "inst1" (rect 3 5 27 18)(font "Intel Clear" )(invisible))
-	(port
-		(pt 16 16)
-		(output)
-		(text "1" (rect 19 7 27 18)(font "Courier New" (bold))(invisible))
-		(text "1" (rect 19 7 27 18)(font "Courier New" (bold))(invisible))
-		(line (pt 16 16)(pt 16 8))
-	)
-	(drawing
-		(line (pt 8 8)(pt 24 8))
 	)
 )
 (connector

@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jan 22, 2022 3:54:08 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1642866848600</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jan 22, 2022 5:39:16 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1642873156915</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/e2/gv319-repo/system_template_de1_soc/software/hello_world_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../first_nios2_system.sopcinfo</SopcDesignFile>
@@ -900,8 +900,8 @@
         </Setting>
         <MemoryMap>
                 <slaveDescriptor>onchip_mem</slaveDescriptor>
-                <addressRange>0x00008000 - 0x0000CFFF</addressRange>
-                <addressSpan>20480</addressSpan>
+                <addressRange>0x00008000 - 0x0000FFFF</addressRange>
+                <addressSpan>32768</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
