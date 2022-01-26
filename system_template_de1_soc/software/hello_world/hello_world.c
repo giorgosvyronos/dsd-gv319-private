@@ -12,18 +12,18 @@
 // Values of x -> x[i] = 0:step:255 -> N iterations where step,N for each testcase.
 
 //Test case 1
-//#define step 5
-//#define N 52
+#define step 5
+#define N 52
 
 
 // Test case 2
-#define step 1/8.0
-#define N 2041
+//#define step 1/8.0
+//#define N 2041
 
-/* Test case 3
- * #define step 1/1024.0
- * #define N 261121
- */
+// Test case 3
+//#define step 1/1024.0
+//#define N 261121
+
 
 // Generates the vector x and stores it in the memory
 void generateVector(float x[N]){
@@ -43,7 +43,7 @@ float sumVector(float x[], int M){
 }
 int main()
 {
-	printf("Task2 - Test Case 2\n");
+	printf("Task2 - Time\n");
 
 	//Define input vector
 	float x[N];
@@ -54,22 +54,43 @@ int main()
 	generateVector(x);
 
 	//The following is used for timing
-	char buf[50];
-	clock_t exec_t1, exec_t2;
+	char buf[40];
+	clock_t exec_t1, exec_t2, exec_t3;
 
 	exec_t1 = times(NULL); // get system time before starting the process
+	// The code that you want to time goes here
+	y = sumVector(x,N);
+
+	// till here
+	exec_t1 = times(NULL) - exec_t1; // get system time after finishing the process
+
+	exec_t2 = times(NULL); // get system time before starting the process
 
 	// The code that you want to time goes here
 	y = sumVector(x,N);
 
 	// till here
-	exec_t2 = times(NULL); // get system time after finishing the process
+	exec_t2 = times(NULL) - exec_t2; // get system time after finishing the process
 
+	exec_t3 = times(NULL); // get system time before starting the process
+
+	// The code that you want to time goes here
+	y = sumVector(x,N);
+
+	// till here
+	exec_t3 = times(NULL) - exec_t3; // get system time after finishing the process
+
+	clock_t exec_tall = (exec_t1 + exec_t2 + exec_t3)/3;
+
+//	gcvt((exec_t2 - exec_t1),10,buf);
+//	alt_putstr(" proc time = "); alt_putst(buf); alt_putstr("ticks \n");
+//
 	int i;
 	for (i=0;i<10;i++){
 		y =y/2.0;
 	}
 
 	printf("Result: %d\n",(int) y);
+	printf("Time taken: %d\n", exec_tall);
 	return 0;
 }
