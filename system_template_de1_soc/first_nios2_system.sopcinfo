@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 20.1 720 (Future versions may contain additional information.) -->
- <!-- 2022.01.25.23:42:37 -->
+ <!-- 2022.02.11.15:56:13 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1643154157</value>
+  <value>1644594972</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -546,7 +546,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.ICACHE_SIZE</name>
-   <value>2048</value>
+   <value>4096</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.INITDA_SUPPORTED</name>
@@ -650,7 +650,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.icache-size</name>
-   <value>2048</value>
+   <value>4096</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -1258,7 +1258,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="icache_size">
    <type>int</type>
-   <value>2048</value>
+   <value>4096</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -6953,7 +6953,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1643154157</value>
+   <value>1644594972</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -6973,7 +6973,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1643154157</value>
+   <value>1644594972</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -6989,7 +6989,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1643154157</value>
+   <value>1644594972</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>

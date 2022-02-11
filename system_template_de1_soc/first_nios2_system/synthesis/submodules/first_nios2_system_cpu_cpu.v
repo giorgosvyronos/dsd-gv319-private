@@ -38,9 +38,9 @@ module first_nios2_system_cpu_cpu_ic_data_module (
   output  [ 31: 0] q;
   input            clock;
   input   [ 31: 0] data;
-  input   [  8: 0] rdaddress;
+  input   [  9: 0] rdaddress;
   input            rden;
-  input   [  8: 0] wraddress;
+  input   [  9: 0] wraddress;
   input            wren;
 
 
@@ -62,8 +62,8 @@ wire    [ 31: 0] ram_q;
 
   defparam the_altsyncram.address_reg_b = "CLOCK0",
            the_altsyncram.maximum_depth = 0,
-           the_altsyncram.numwords_a = 512,
-           the_altsyncram.numwords_b = 512,
+           the_altsyncram.numwords_a = 1024,
+           the_altsyncram.numwords_b = 1024,
            the_altsyncram.operation_mode = "DUAL_PORT",
            the_altsyncram.outdata_reg_b = "UNREGISTERED",
            the_altsyncram.ram_block_type = "AUTO",
@@ -71,8 +71,8 @@ wire    [ 31: 0] ram_q;
            the_altsyncram.read_during_write_mode_mixed_ports = "DONT_CARE",
            the_altsyncram.width_a = 32,
            the_altsyncram.width_b = 32,
-           the_altsyncram.widthad_a = 9,
-           the_altsyncram.widthad_b = 9;
+           the_altsyncram.widthad_a = 10,
+           the_altsyncram.widthad_b = 10;
 
 
 endmodule
@@ -103,18 +103,18 @@ module first_nios2_system_cpu_cpu_ic_tag_module (
   parameter lpm_file = "UNUSED";
 
 
-  output  [ 21: 0] q;
+  output  [ 20: 0] q;
   input            clock;
-  input   [ 21: 0] data;
-  input   [  5: 0] rdaddress;
+  input   [ 20: 0] data;
+  input   [  6: 0] rdaddress;
   input            rden;
-  input   [  5: 0] wraddress;
+  input   [  6: 0] wraddress;
   input            wren;
 
 
-wire    [ 21: 0] q;
-wire    [ 21: 0] ram_data;
-wire    [ 21: 0] ram_q;
+wire    [ 20: 0] q;
+wire    [ 20: 0] ram_data;
+wire    [ 20: 0] ram_q;
   assign q = ram_q;
   assign ram_data = data;
   altsyncram the_altsyncram
@@ -131,17 +131,17 @@ wire    [ 21: 0] ram_q;
   defparam the_altsyncram.address_reg_b = "CLOCK0",
            the_altsyncram.init_file = lpm_file,
            the_altsyncram.maximum_depth = 0,
-           the_altsyncram.numwords_a = 64,
-           the_altsyncram.numwords_b = 64,
+           the_altsyncram.numwords_a = 128,
+           the_altsyncram.numwords_b = 128,
            the_altsyncram.operation_mode = "DUAL_PORT",
            the_altsyncram.outdata_reg_b = "UNREGISTERED",
            the_altsyncram.ram_block_type = "AUTO",
            the_altsyncram.rdcontrol_reg_b = "CLOCK0",
            the_altsyncram.read_during_write_mode_mixed_ports = "OLD_DATA",
-           the_altsyncram.width_a = 22,
-           the_altsyncram.width_b = 22,
-           the_altsyncram.widthad_a = 6,
-           the_altsyncram.widthad_b = 6;
+           the_altsyncram.width_a = 21,
+           the_altsyncram.width_b = 21,
+           the_altsyncram.widthad_a = 7,
+           the_altsyncram.widthad_b = 7;
 
 
 endmodule
@@ -2861,7 +2861,7 @@ defparam first_nios2_system_cpu_cpu_ociram_sp_ram.lpm_file = "first_nios2_system
     (MonAReg[4 : 2] == 3'd1)? 32'h00001919 :
     (MonAReg[4 : 2] == 3'd2)? 32'h00440000 :
     (MonAReg[4 : 2] == 3'd3)? 32'h00000100 :
-    (MonAReg[4 : 2] == 3'd4)? 32'h20000b0b :
+    (MonAReg[4 : 2] == 3'd4)? 32'h20000b0c :
     (MonAReg[4 : 2] == 3'd5)? 32'h00800000 :
     (MonAReg[4 : 2] == 3'd6)? 32'h00000000 :
     32'h00000000;
@@ -4283,10 +4283,10 @@ wire             D_op_xor;
 wire             D_op_xorhi;
 wire             D_op_xori;
 reg     [ 22: 0] D_pc;
-wire    [  5: 0] D_pc_line_field;
+wire    [  6: 0] D_pc_line_field;
 wire    [  2: 0] D_pc_offset_field;
 reg     [ 22: 0] D_pc_plus_one;
-wire    [ 13: 0] D_pc_tag_field;
+wire    [ 12: 0] D_pc_tag_field;
 wire    [ 24: 0] D_pcb;
 wire             D_raw_refetch;
 wire             D_rdprs_stall;
@@ -4728,14 +4728,14 @@ wire             F_ctrl_jmp_direct;
 wire             F_ctrl_src2_choose_imm;
 wire             F_ctrl_unsigned_lo_imm16;
 wire             F_en;
-wire    [  8: 0] F_ic_data_rd_addr_nxt;
-wire    [ 13: 0] F_ic_desired_tag;
+wire    [  9: 0] F_ic_data_rd_addr_nxt;
+wire    [ 12: 0] F_ic_desired_tag;
 wire             F_ic_fill_same_tag_line;
 wire             F_ic_hit;
 wire    [ 31: 0] F_ic_iw;
-wire    [ 13: 0] F_ic_tag_field;
-wire    [ 21: 0] F_ic_tag_rd;
-wire    [  5: 0] F_ic_tag_rd_addr_nxt;
+wire    [ 12: 0] F_ic_tag_field;
+wire    [ 20: 0] F_ic_tag_rd;
+wire    [  6: 0] F_ic_tag_rd_addr_nxt;
 wire             F_ic_valid;
 wire    [  7: 0] F_ic_valid_bits;
 wire    [ 55: 0] F_inst;
@@ -4893,10 +4893,10 @@ wire             F_op_xor;
 wire             F_op_xorhi;
 wire             F_op_xori;
 reg     [ 22: 0] F_pc;
-wire    [  5: 0] F_pc_line_field;
+wire    [  6: 0] F_pc_line_field;
 wire    [ 22: 0] F_pc_nxt;
 wire    [ 22: 0] F_pc_plus_one;
-wire    [ 13: 0] F_pc_tag_field;
+wire    [ 12: 0] F_pc_tag_field;
 wire    [ 24: 0] F_pcb;
 wire    [ 24: 0] F_pcb_nxt;
 wire    [  4: 0] F_rf_rd_addr_a;
@@ -5837,11 +5837,11 @@ reg     [  2: 0] ic_fill_dp_offset;
 wire             ic_fill_dp_offset_en;
 wire    [  2: 0] ic_fill_dp_offset_nxt;
 reg     [  2: 0] ic_fill_initial_offset;
-reg     [  5: 0] ic_fill_line;
+reg     [  6: 0] ic_fill_line;
 reg              ic_fill_prevent_refill;
 wire             ic_fill_prevent_refill_nxt;
 wire             ic_fill_req_accepted;
-reg     [ 13: 0] ic_fill_tag;
+reg     [ 12: 0] ic_fill_tag;
 wire    [  7: 0] ic_fill_valid_bit_new;
 reg     [  7: 0] ic_fill_valid_bits;
 wire             ic_fill_valid_bits_en;
@@ -5849,9 +5849,9 @@ wire    [  7: 0] ic_fill_valid_bits_nxt;
 reg              ic_tag_clr_valid_bits;
 wire             ic_tag_clr_valid_bits_nxt;
 wire             ic_tag_rden;
-reg     [  5: 0] ic_tag_wraddress;
-wire    [  5: 0] ic_tag_wraddress_nxt;
-wire    [ 21: 0] ic_tag_wrdata;
+reg     [  6: 0] ic_tag_wraddress;
+wire    [  6: 0] ic_tag_wraddress_nxt;
+wire    [ 20: 0] ic_tag_wrdata;
 wire             ic_tag_wren;
 reg              latched_oci_tb_hbreak_req;
 wire             latched_oci_tb_hbreak_req_next;
@@ -6911,7 +6911,7 @@ reg              wait_for_one_post_bret_inst;
 
 
   assign F_pc_plus_one = F_pc + 1;
-  assign F_ic_data_rd_addr_nxt = F_pc_nxt[8 : 0];
+  assign F_ic_data_rd_addr_nxt = F_pc_nxt[9 : 0];
   assign ic_data_wren = i_readdatavalid_d1;
   assign ic_data_rden = F_en;
 //first_nios2_system_cpu_cpu_ic_data, which is an nios_sdp_ram
@@ -6926,7 +6926,7 @@ first_nios2_system_cpu_cpu_ic_data_module first_nios2_system_cpu_cpu_ic_data
     .wren      (ic_data_wren)
   );
 
-  assign F_ic_tag_rd_addr_nxt = F_pc_nxt[8 : 3];
+  assign F_ic_tag_rd_addr_nxt = F_pc_nxt[9 : 3];
   assign ic_tag_clr_valid_bits_nxt = ((A_ctrl_invalidate_i & A_valid) | A_exc_crst_active) | D_ic_fill_starting | clr_break_line;
   assign ic_fill_valid_bits_nxt = ic_tag_clr_valid_bits_nxt ? 0 :
     D_ic_fill_starting_d1     ? ic_fill_valid_bit_new : 
@@ -6944,9 +6944,9 @@ first_nios2_system_cpu_cpu_ic_data_module first_nios2_system_cpu_cpu_ic_data
     end
 
 
-  assign ic_tag_wraddress_nxt = (clr_break_line)? 1 :
+  assign ic_tag_wraddress_nxt = (clr_break_line)? 65 :
     (A_exc_crst_active)? 0 :
-    ((((A_ctrl_invalidate_i & A_valid) | A_exc_crst_active)))? (A_inst_result[10 : 5]) :
+    ((((A_ctrl_invalidate_i & A_valid) | A_exc_crst_active)))? (A_inst_result[11 : 5]) :
     (D_ic_fill_starting)? D_pc_line_field :
     ic_fill_line;
 
@@ -6999,9 +6999,9 @@ defparam first_nios2_system_cpu_cpu_ic_tag.lpm_file = "first_nios2_system_cpu_cp
 defparam first_nios2_system_cpu_cpu_ic_tag.lpm_file = "first_nios2_system_cpu_cpu_ic_tag_ram.hex";
 `endif
 //synthesis translate_on
-  assign F_ic_tag_field = F_ic_tag_rd[13 : 0];
-  assign F_ic_valid_bits = F_ic_tag_rd[21 : 14];
-  assign F_ic_desired_tag = F_pc[22 : 9];
+  assign F_ic_tag_field = F_ic_tag_rd[12 : 0];
+  assign F_ic_valid_bits = F_ic_tag_rd[20 : 13];
+  assign F_ic_desired_tag = F_pc[22 : 10];
   assign F_ic_valid = (F_pc[2 : 0] == 3'd0)? F_ic_valid_bits[0] :
     (F_pc[2 : 0] == 3'd1)? F_ic_valid_bits[1] :
     (F_pc[2 : 0] == 3'd2)? F_ic_valid_bits[2] :
@@ -7012,10 +7012,10 @@ defparam first_nios2_system_cpu_cpu_ic_tag.lpm_file = "first_nios2_system_cpu_cp
     F_ic_valid_bits[7];
 
   assign F_ic_hit = F_ic_valid & (F_ic_desired_tag == F_ic_tag_field);
-  assign F_pc_tag_field = F_pc[22 : 9];
-  assign F_pc_line_field = F_pc[8 : 3];
-  assign D_pc_tag_field = D_pc[22 : 9];
-  assign D_pc_line_field = D_pc[8 : 3];
+  assign F_pc_tag_field = F_pc[22 : 10];
+  assign F_pc_line_field = F_pc[9 : 3];
+  assign D_pc_tag_field = D_pc[22 : 10];
+  assign D_pc_line_field = D_pc[9 : 3];
   assign D_pc_offset_field = D_pc[2 : 0];
   assign D_ic_want_fill_unfiltered = D_refetch;
   assign ic_fill_prevent_refill_nxt = D_ic_fill_starting | (ic_fill_prevent_refill & ~(((A_ctrl_invalidate_i & A_valid) | A_exc_crst_active) ));
@@ -7043,7 +7043,7 @@ defparam first_nios2_system_cpu_cpu_ic_tag.lpm_file = "first_nios2_system_cpu_cp
     (i_read & (i_waitrequest | (~ic_fill_ap_last_word & ic_fill_active)));
 
   assign i_address = {ic_fill_tag, 
-    ic_fill_line[5 : 0],
+    ic_fill_line[6 : 0],
     ic_fill_ap_offset, 
     2'b00};
 

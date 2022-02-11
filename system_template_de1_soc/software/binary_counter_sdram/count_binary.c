@@ -62,8 +62,15 @@
  *   Display.
  */
 
-#include "count_binary.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/alt_stdio.h>
+#include <sys/alt_alarm.h>
+#include <sys/times.h>
+#include <alt_types.h>
+#include <system.h>
+#include <stdio.h>
+#include <unistd.h>
 /* A "loop counter" variable. */
 static alt_u8 count;
 /* A variable to hold the value of the button pio edge capture register. */
@@ -335,6 +342,11 @@ static void handle_button_press(alt_u8 type, FILE *lcd)
 
 int main(void)
 { 
+	char buf[40];
+	clock_t exec_t1,exec_t2;
+	char *gcvt(double number, int ndigit, char *buf);
+
+	exec_t1 = times(NULL);
     int i;
     int  __attribute__ ((unused))  wait_time;  /* Attribute suppresses "var set but not used" warning. */
     FILE * lcd;
@@ -408,6 +420,15 @@ int main(void)
         count++;
     }
     LCD_CLOSE(lcd);
+
+    exec_t2 = times(NULL);
+
+
+    gcvt((exec_t2 - exec_t1), 10 ,buf);
+
+    alt_putstr("proc time = "); alt_putstr(buf); alt_putstr(" ticks \n");
+
+
     return 0;
 }
 /******************************************************************************

@@ -73,6 +73,14 @@
          type = "int";
       }
    }
+   element onchip_mem.clk1
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+   }
    element onchip_mem.s1
    {
       datum baseAddress
@@ -105,8 +113,21 @@
          type = "int";
       }
    }
+   element sys_clk_timer.reset
+   {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
+   }
    element sys_clk_timer.s1
    {
+      datum _tags
+      {
+         value = "";
+         type = "String";
+      }
       datum baseAddress
       {
          value = "16781312";
@@ -219,7 +240,7 @@
   <parameter name="icache_burstType" value="None" />
   <parameter name="icache_numTCIM" value="0" />
   <parameter name="icache_ramBlockType" value="Automatic" />
-  <parameter name="icache_size" value="2048" />
+  <parameter name="icache_size" value="4096" />
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Fast" />
   <parameter name="instAddrWidth" value="25" />

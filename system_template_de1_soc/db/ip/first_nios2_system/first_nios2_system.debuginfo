@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="first_nios2_system" kind="system" version="20.1" fabric="QSYS">
  <!-- Format version 20.1 720 (Future versions may contain additional information.) -->
- <!-- 2022.01.25.23:42:50 -->
+ <!-- 2022.02.11.15:56:27 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -53,7 +53,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1643154157</value>
+  <value>1644594972</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -618,7 +618,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.ICACHE_SIZE</name>
-   <value>2048</value>
+   <value>4096</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.INITDA_SUPPORTED</name>
@@ -722,7 +722,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.icache-size</name>
-   <value>2048</value>
+   <value>4096</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -1330,7 +1330,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="icache_size">
    <type>int</type>
-   <value>2048</value>
+   <value>4096</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -6970,7 +6970,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1643154157</value>
+   <value>1644594972</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -6990,7 +6990,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1643154157</value>
+   <value>1644594972</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -7006,7 +7006,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1643154157</value>
+   <value>1644594972</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -12728,5 +12728,5 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <reportVersion>20.1 720</reportVersion>
- <uniqueIdentifier>000C2904B0AC0000017E939EC0BF</uniqueIdentifier>
+ <uniqueIdentifier>000C2904B0AC0000017EE97FDE4B</uniqueIdentifier>
 </EnsembleReport>
