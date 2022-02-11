@@ -18,12 +18,12 @@
 
 
 // Test case 2
-//#define step 1/8.0
-//#define N 2041
+#define step 1/8.0
+#define N 2041
 
 // Test case 3
-#define step 1/1024.0
-#define N 261121
+//#define step 1/1024.0
+//#define N 261121
 
 // Test case 4
 //#define N 2323

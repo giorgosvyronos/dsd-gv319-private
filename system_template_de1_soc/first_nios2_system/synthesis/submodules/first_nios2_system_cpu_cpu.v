@@ -38,9 +38,9 @@ module first_nios2_system_cpu_cpu_ic_data_module (
   output  [ 31: 0] q;
   input            clock;
   input   [ 31: 0] data;
-  input   [  9: 0] rdaddress;
+  input   [ 13: 0] rdaddress;
   input            rden;
-  input   [  9: 0] wraddress;
+  input   [ 13: 0] wraddress;
   input            wren;
 
 
@@ -62,8 +62,8 @@ wire    [ 31: 0] ram_q;
 
   defparam the_altsyncram.address_reg_b = "CLOCK0",
            the_altsyncram.maximum_depth = 0,
-           the_altsyncram.numwords_a = 1024,
-           the_altsyncram.numwords_b = 1024,
+           the_altsyncram.numwords_a = 16384,
+           the_altsyncram.numwords_b = 16384,
            the_altsyncram.operation_mode = "DUAL_PORT",
            the_altsyncram.outdata_reg_b = "UNREGISTERED",
            the_altsyncram.ram_block_type = "AUTO",
@@ -71,8 +71,8 @@ wire    [ 31: 0] ram_q;
            the_altsyncram.read_during_write_mode_mixed_ports = "DONT_CARE",
            the_altsyncram.width_a = 32,
            the_altsyncram.width_b = 32,
-           the_altsyncram.widthad_a = 10,
-           the_altsyncram.widthad_b = 10;
+           the_altsyncram.widthad_a = 14,
+           the_altsyncram.widthad_b = 14;
 
 
 endmodule
@@ -103,18 +103,18 @@ module first_nios2_system_cpu_cpu_ic_tag_module (
   parameter lpm_file = "UNUSED";
 
 
-  output  [ 20: 0] q;
+  output  [ 16: 0] q;
   input            clock;
-  input   [ 20: 0] data;
-  input   [  6: 0] rdaddress;
+  input   [ 16: 0] data;
+  input   [ 10: 0] rdaddress;
   input            rden;
-  input   [  6: 0] wraddress;
+  input   [ 10: 0] wraddress;
   input            wren;
 
 
-wire    [ 20: 0] q;
-wire    [ 20: 0] ram_data;
-wire    [ 20: 0] ram_q;
+wire    [ 16: 0] q;
+wire    [ 16: 0] ram_data;
+wire    [ 16: 0] ram_q;
   assign q = ram_q;
   assign ram_data = data;
   altsyncram the_altsyncram
@@ -131,17 +131,17 @@ wire    [ 20: 0] ram_q;
   defparam the_altsyncram.address_reg_b = "CLOCK0",
            the_altsyncram.init_file = lpm_file,
            the_altsyncram.maximum_depth = 0,
-           the_altsyncram.numwords_a = 128,
-           the_altsyncram.numwords_b = 128,
+           the_altsyncram.numwords_a = 2048,
+           the_altsyncram.numwords_b = 2048,
            the_altsyncram.operation_mode = "DUAL_PORT",
            the_altsyncram.outdata_reg_b = "UNREGISTERED",
            the_altsyncram.ram_block_type = "AUTO",
            the_altsyncram.rdcontrol_reg_b = "CLOCK0",
            the_altsyncram.read_during_write_mode_mixed_ports = "OLD_DATA",
-           the_altsyncram.width_a = 21,
-           the_altsyncram.width_b = 21,
-           the_altsyncram.widthad_a = 7,
-           the_altsyncram.widthad_b = 7;
+           the_altsyncram.width_a = 17,
+           the_altsyncram.width_b = 17,
+           the_altsyncram.widthad_a = 11,
+           the_altsyncram.widthad_b = 11;
 
 
 endmodule
@@ -2861,7 +2861,7 @@ defparam first_nios2_system_cpu_cpu_ociram_sp_ram.lpm_file = "first_nios2_system
     (MonAReg[4 : 2] == 3'd1)? 32'h00001919 :
     (MonAReg[4 : 2] == 3'd2)? 32'h00440000 :
     (MonAReg[4 : 2] == 3'd3)? 32'h00000100 :
-    (MonAReg[4 : 2] == 3'd4)? 32'h20000b0c :
+    (MonAReg[4 : 2] == 3'd4)? 32'h20000b10 :
     (MonAReg[4 : 2] == 3'd5)? 32'h00800000 :
     (MonAReg[4 : 2] == 3'd6)? 32'h00000000 :
     32'h00000000;
@@ -3627,6 +3627,14 @@ wire             A_ctrl_mem_dc_data_rd_nxt;
 reg              A_ctrl_mem_dc_tag_rd;
 wire             A_ctrl_mem_dc_tag_rd_nxt;
 wire             A_ctrl_mem_nxt;
+reg              A_ctrl_mul_lsw;
+wire             A_ctrl_mul_lsw_nxt;
+reg              A_ctrl_mul_src1_signed;
+wire             A_ctrl_mul_src1_signed_nxt;
+reg              A_ctrl_mul_src2_signed;
+wire             A_ctrl_mul_src2_signed_nxt;
+reg              A_ctrl_mulx;
+wire             A_ctrl_mulx_nxt;
 reg              A_ctrl_rd_ctl_reg;
 wire             A_ctrl_rd_ctl_reg_nxt;
 reg              A_ctrl_retaddr;
@@ -3860,6 +3868,20 @@ wire             A_mem_stall_start_nxt;
 wire             A_mem_stall_stop_nxt;
 wire    [ 22: 0] A_mem_waddr;
 wire    [ 22: 0] A_mem_waddr_phy;
+reg     [ 15: 0] A_mul_cell_p1;
+reg     [ 31: 0] A_mul_cell_p3;
+reg     [ 31: 0] A_mul_cell_p4;
+wire    [ 31: 0] A_mul_result;
+wire    [ 31: 0] A_mul_result_msw;
+reg     [ 16: 0] A_mul_s1;
+wire    [ 17: 0] A_mul_s2;
+reg     [  1: 0] A_mul_s2_co;
+reg     [ 31: 0] A_mul_s3;
+wire    [ 31: 0] A_mul_s3_nxt;
+reg     [ 31: 0] A_mul_s4;
+wire    [ 31: 0] A_mul_s4_nxt;
+wire    [ 31: 0] A_mul_s5;
+reg              A_mul_stall;
 wire             A_one_post_bret_inst_n;
 wire             A_op_add;
 wire             A_op_addi;
@@ -4091,6 +4113,10 @@ wire             D_ctrl_logic;
 wire             D_ctrl_mem16;
 wire             D_ctrl_mem32;
 wire             D_ctrl_mem8;
+wire             D_ctrl_mul_lsw;
+wire             D_ctrl_mul_src1_signed;
+wire             D_ctrl_mul_src2_signed;
+wire             D_ctrl_mulx;
 wire             D_ctrl_rdprs;
 wire             D_ctrl_retaddr;
 wire             D_ctrl_rot;
@@ -4283,10 +4309,10 @@ wire             D_op_xor;
 wire             D_op_xorhi;
 wire             D_op_xori;
 reg     [ 22: 0] D_pc;
-wire    [  6: 0] D_pc_line_field;
+wire    [ 10: 0] D_pc_line_field;
 wire    [  2: 0] D_pc_offset_field;
 reg     [ 22: 0] D_pc_plus_one;
-wire    [ 12: 0] D_pc_tag_field;
+wire    [  8: 0] D_pc_tag_field;
 wire    [ 24: 0] D_pcb;
 wire             D_raw_refetch;
 wire             D_rdprs_stall;
@@ -4440,6 +4466,14 @@ wire             E_ctrl_mem8_nxt;
 wire             E_ctrl_mem_data_access;
 wire             E_ctrl_mem_dc_data_rd;
 wire             E_ctrl_mem_dc_tag_rd;
+reg              E_ctrl_mul_lsw;
+wire             E_ctrl_mul_lsw_nxt;
+reg              E_ctrl_mul_src1_signed;
+wire             E_ctrl_mul_src1_signed_nxt;
+reg              E_ctrl_mul_src2_signed;
+wire             E_ctrl_mul_src2_signed_nxt;
+reg              E_ctrl_mulx;
+wire             E_ctrl_mulx_nxt;
 wire             E_ctrl_rd_ctl_reg;
 reg              E_ctrl_retaddr;
 wire             E_ctrl_retaddr_nxt;
@@ -4728,14 +4762,14 @@ wire             F_ctrl_jmp_direct;
 wire             F_ctrl_src2_choose_imm;
 wire             F_ctrl_unsigned_lo_imm16;
 wire             F_en;
-wire    [  9: 0] F_ic_data_rd_addr_nxt;
-wire    [ 12: 0] F_ic_desired_tag;
+wire    [ 13: 0] F_ic_data_rd_addr_nxt;
+wire    [  8: 0] F_ic_desired_tag;
 wire             F_ic_fill_same_tag_line;
 wire             F_ic_hit;
 wire    [ 31: 0] F_ic_iw;
-wire    [ 12: 0] F_ic_tag_field;
-wire    [ 20: 0] F_ic_tag_rd;
-wire    [  6: 0] F_ic_tag_rd_addr_nxt;
+wire    [  8: 0] F_ic_tag_field;
+wire    [ 16: 0] F_ic_tag_rd;
+wire    [ 10: 0] F_ic_tag_rd_addr_nxt;
 wire             F_ic_valid;
 wire    [  7: 0] F_ic_valid_bits;
 wire    [ 55: 0] F_inst;
@@ -4893,10 +4927,10 @@ wire             F_op_xor;
 wire             F_op_xorhi;
 wire             F_op_xori;
 reg     [ 22: 0] F_pc;
-wire    [  6: 0] F_pc_line_field;
+wire    [ 10: 0] F_pc_line_field;
 wire    [ 22: 0] F_pc_nxt;
 wire    [ 22: 0] F_pc_plus_one;
-wire    [ 12: 0] F_pc_tag_field;
+wire    [  8: 0] F_pc_tag_field;
 wire    [ 24: 0] F_pcb;
 wire    [ 24: 0] F_pcb_nxt;
 wire    [  4: 0] F_rf_rd_addr_a;
@@ -5056,6 +5090,14 @@ wire             M_ctrl_mem_dc_data_rd_nxt;
 reg              M_ctrl_mem_dc_tag_rd;
 wire             M_ctrl_mem_dc_tag_rd_nxt;
 wire             M_ctrl_mem_nxt;
+reg              M_ctrl_mul_lsw;
+wire             M_ctrl_mul_lsw_nxt;
+reg              M_ctrl_mul_src1_signed;
+wire             M_ctrl_mul_src1_signed_nxt;
+reg              M_ctrl_mul_src2_signed;
+wire             M_ctrl_mul_src2_signed_nxt;
+reg              M_ctrl_mulx;
+wire             M_ctrl_mulx_nxt;
 reg              M_ctrl_rd_ctl_reg;
 wire             M_ctrl_rd_ctl_reg_nxt;
 reg              M_ctrl_retaddr;
@@ -5191,6 +5233,11 @@ wire    [ 13: 0] M_mem_baddr_tag_field;
 reg     [  3: 0] M_mem_byte_en;
 wire    [ 22: 0] M_mem_waddr;
 wire    [ 22: 0] M_mem_waddr_phy;
+wire    [ 31: 0] M_mul_cell_p1;
+wire    [ 31: 0] M_mul_cell_p2;
+wire    [ 31: 0] M_mul_cell_p3;
+wire    [ 31: 0] M_mul_cell_p4;
+wire    [ 16: 0] M_mul_s1;
 wire             M_non_flushing_wrctl;
 reg              M_norm_intr_req;
 reg              M_oci_sync_hbreak_req;
@@ -5500,6 +5547,14 @@ wire             W_ctrl_mem8_nxt;
 reg              W_ctrl_mem_data_access;
 wire             W_ctrl_mem_data_access_nxt;
 wire             W_ctrl_mem_nxt;
+reg              W_ctrl_mul_lsw;
+wire             W_ctrl_mul_lsw_nxt;
+reg              W_ctrl_mul_src1_signed;
+wire             W_ctrl_mul_src1_signed_nxt;
+reg              W_ctrl_mul_src2_signed;
+wire             W_ctrl_mul_src2_signed_nxt;
+reg              W_ctrl_mulx;
+wire             W_ctrl_mulx_nxt;
 reg              W_ctrl_rd_ctl_reg;
 wire             W_ctrl_rd_ctl_reg_nxt;
 reg              W_ctrl_retaddr;
@@ -5837,11 +5892,11 @@ reg     [  2: 0] ic_fill_dp_offset;
 wire             ic_fill_dp_offset_en;
 wire    [  2: 0] ic_fill_dp_offset_nxt;
 reg     [  2: 0] ic_fill_initial_offset;
-reg     [  6: 0] ic_fill_line;
+reg     [ 10: 0] ic_fill_line;
 reg              ic_fill_prevent_refill;
 wire             ic_fill_prevent_refill_nxt;
 wire             ic_fill_req_accepted;
-reg     [ 12: 0] ic_fill_tag;
+reg     [  8: 0] ic_fill_tag;
 wire    [  7: 0] ic_fill_valid_bit_new;
 reg     [  7: 0] ic_fill_valid_bits;
 wire             ic_fill_valid_bits_en;
@@ -5849,9 +5904,9 @@ wire    [  7: 0] ic_fill_valid_bits_nxt;
 reg              ic_tag_clr_valid_bits;
 wire             ic_tag_clr_valid_bits_nxt;
 wire             ic_tag_rden;
-reg     [  6: 0] ic_tag_wraddress;
-wire    [  6: 0] ic_tag_wraddress_nxt;
-wire    [ 20: 0] ic_tag_wrdata;
+reg     [ 10: 0] ic_tag_wraddress;
+wire    [ 10: 0] ic_tag_wraddress_nxt;
+wire    [ 16: 0] ic_tag_wrdata;
 wire             ic_tag_wren;
 reg              latched_oci_tb_hbreak_req;
 wire             latched_oci_tb_hbreak_req_next;
@@ -6911,7 +6966,7 @@ reg              wait_for_one_post_bret_inst;
 
 
   assign F_pc_plus_one = F_pc + 1;
-  assign F_ic_data_rd_addr_nxt = F_pc_nxt[9 : 0];
+  assign F_ic_data_rd_addr_nxt = F_pc_nxt[13 : 0];
   assign ic_data_wren = i_readdatavalid_d1;
   assign ic_data_rden = F_en;
 //first_nios2_system_cpu_cpu_ic_data, which is an nios_sdp_ram
@@ -6926,7 +6981,7 @@ first_nios2_system_cpu_cpu_ic_data_module first_nios2_system_cpu_cpu_ic_data
     .wren      (ic_data_wren)
   );
 
-  assign F_ic_tag_rd_addr_nxt = F_pc_nxt[9 : 3];
+  assign F_ic_tag_rd_addr_nxt = F_pc_nxt[13 : 3];
   assign ic_tag_clr_valid_bits_nxt = ((A_ctrl_invalidate_i & A_valid) | A_exc_crst_active) | D_ic_fill_starting | clr_break_line;
   assign ic_fill_valid_bits_nxt = ic_tag_clr_valid_bits_nxt ? 0 :
     D_ic_fill_starting_d1     ? ic_fill_valid_bit_new : 
@@ -6946,7 +7001,7 @@ first_nios2_system_cpu_cpu_ic_data_module first_nios2_system_cpu_cpu_ic_data
 
   assign ic_tag_wraddress_nxt = (clr_break_line)? 65 :
     (A_exc_crst_active)? 0 :
-    ((((A_ctrl_invalidate_i & A_valid) | A_exc_crst_active)))? (A_inst_result[11 : 5]) :
+    ((((A_ctrl_invalidate_i & A_valid) | A_exc_crst_active)))? (A_inst_result[15 : 5]) :
     (D_ic_fill_starting)? D_pc_line_field :
     ic_fill_line;
 
@@ -6999,9 +7054,9 @@ defparam first_nios2_system_cpu_cpu_ic_tag.lpm_file = "first_nios2_system_cpu_cp
 defparam first_nios2_system_cpu_cpu_ic_tag.lpm_file = "first_nios2_system_cpu_cpu_ic_tag_ram.hex";
 `endif
 //synthesis translate_on
-  assign F_ic_tag_field = F_ic_tag_rd[12 : 0];
-  assign F_ic_valid_bits = F_ic_tag_rd[20 : 13];
-  assign F_ic_desired_tag = F_pc[22 : 10];
+  assign F_ic_tag_field = F_ic_tag_rd[8 : 0];
+  assign F_ic_valid_bits = F_ic_tag_rd[16 : 9];
+  assign F_ic_desired_tag = F_pc[22 : 14];
   assign F_ic_valid = (F_pc[2 : 0] == 3'd0)? F_ic_valid_bits[0] :
     (F_pc[2 : 0] == 3'd1)? F_ic_valid_bits[1] :
     (F_pc[2 : 0] == 3'd2)? F_ic_valid_bits[2] :
@@ -7012,10 +7067,10 @@ defparam first_nios2_system_cpu_cpu_ic_tag.lpm_file = "first_nios2_system_cpu_cp
     F_ic_valid_bits[7];
 
   assign F_ic_hit = F_ic_valid & (F_ic_desired_tag == F_ic_tag_field);
-  assign F_pc_tag_field = F_pc[22 : 10];
-  assign F_pc_line_field = F_pc[9 : 3];
-  assign D_pc_tag_field = D_pc[22 : 10];
-  assign D_pc_line_field = D_pc[9 : 3];
+  assign F_pc_tag_field = F_pc[22 : 14];
+  assign F_pc_line_field = F_pc[13 : 3];
+  assign D_pc_tag_field = D_pc[22 : 14];
+  assign D_pc_line_field = D_pc[13 : 3];
   assign D_pc_offset_field = D_pc[2 : 0];
   assign D_ic_want_fill_unfiltered = D_refetch;
   assign ic_fill_prevent_refill_nxt = D_ic_fill_starting | (ic_fill_prevent_refill & ~(((A_ctrl_invalidate_i & A_valid) | A_exc_crst_active) ));
@@ -7043,7 +7098,7 @@ defparam first_nios2_system_cpu_cpu_ic_tag.lpm_file = "first_nios2_system_cpu_cp
     (i_read & (i_waitrequest | (~ic_fill_ap_last_word & ic_fill_active)));
 
   assign i_address = {ic_fill_tag, 
-    ic_fill_line[6 : 0],
+    ic_fill_line[10 : 0],
     ic_fill_ap_offset, 
     2'b00};
 
@@ -7711,7 +7766,7 @@ defparam first_nios2_system_cpu_cpu_bht.lpm_file = "first_nios2_system_cpu_cpu_b
     M_pc_plus_one;
 
   assign A_pipe_flush_baddr_nxt = {A_pipe_flush_waddr_nxt, 2'b00};
-  assign A_stall = A_mem_stall;
+  assign A_stall = A_mem_stall|A_mul_stall;
   assign A_en = ~A_stall;
   always @(posedge clk or negedge reset_n)
     begin
@@ -7965,6 +8020,8 @@ defparam first_nios2_system_cpu_cpu_bht.lpm_file = "first_nios2_system_cpu_cpu_b
   assign A_exc_addr = A_inst_result;
   assign A_shift_rot_bmx_result = A_shift_rot_result;
   assign A_wr_data_unfiltered = (A_exc_any)? A_inst_result_aligned :
+    (A_ctrl_mulx)? A_mul_result_msw :
+    (A_ctrl_mul_lsw)? A_mul_result :
     (A_ctrl_shift_rot)? A_shift_rot_bmx_result :
     ((~A_slow_inst_sel | A_ctrl_st_ex))? A_inst_result_aligned :
     A_slow_inst_result;
@@ -8562,6 +8619,100 @@ defparam first_nios2_system_cpu_cpu_register_bank_b.lpm_file = "first_nios2_syst
           A_shift_rot_result[31 : 24] <= M_rot_pass3 ? M_rot[31 : 24] : M_rot_lut3;
     end
 
+
+  assign M_mul_s1 = M_mul_cell_p2[15 : 0] + M_mul_cell_p1[31 : 16];
+  assign A_mul_s2 = A_mul_cell_p3[15 : 0] + A_mul_s1;
+  assign A_mul_result = {A_mul_s2[15 : 0], A_mul_cell_p1[15 : 0]};
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_mul_cell_p1 <= 0;
+      else if (A_en)
+          A_mul_cell_p1 <= M_mul_cell_p1[15 : 0];
+    end
+
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_mul_cell_p3 <= 0;
+      else if (A_en)
+          A_mul_cell_p3 <= M_mul_cell_p3;
+    end
+
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_mul_s1 <= 0;
+      else if (A_en)
+          A_mul_s1 <= M_mul_s1;
+    end
+
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_mul_stall <= 0;
+      else 
+        A_mul_stall <= M_ctrl_mulx & M_valid & A_en;
+    end
+
+
+  assign A_mul_s3_nxt = {{16{(M_mul_cell_p3[31] & M_ctrl_mul_src1_signed)}},M_mul_cell_p3[31 : 16]} + {{16{(M_mul_cell_p2[31] & M_ctrl_mul_src2_signed)}},M_mul_cell_p2[31 : 16]};
+  assign A_mul_s4_nxt = A_mul_cell_p4 + A_mul_s3;
+  assign A_mul_s5 = A_mul_s4 + A_mul_s2_co;
+  assign A_mul_result_msw = A_mul_s5;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_mul_cell_p4 <= 0;
+      else if (A_en)
+          A_mul_cell_p4 <= M_mul_cell_p4;
+    end
+
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_mul_s2_co <= 0;
+      else 
+        A_mul_s2_co <= A_mul_s2[17 : 16];
+    end
+
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_mul_s3 <= 0;
+      else 
+        A_mul_s3 <= A_mul_s3_nxt;
+    end
+
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_mul_s4 <= 0;
+      else 
+        A_mul_s4 <= A_mul_s4_nxt;
+    end
+
+
+  first_nios2_system_cpu_cpu_mult_cell the_first_nios2_system_cpu_cpu_mult_cell
+    (
+      .E_ctrl_mul_src1_signed (E_ctrl_mul_src1_signed),
+      .E_ctrl_mul_src2_signed (E_ctrl_mul_src2_signed),
+      .E_src1                 (E_src1),
+      .E_src2                 (E_src2),
+      .M_en                   (M_en),
+      .M_mul_cell_p1          (M_mul_cell_p1),
+      .M_mul_cell_p2          (M_mul_cell_p2),
+      .M_mul_cell_p3          (M_mul_cell_p3),
+      .M_mul_cell_p4          (M_mul_cell_p4),
+      .clk                    (clk),
+      .reset_n                (reset_n)
+    );
 
   assign E_mem_bypass_non_io = E_arith_result[31];
   assign A_valid_st_writes_mem = A_ctrl_st & A_valid & A_st_writes_mem;
@@ -10002,7 +10153,7 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
   //debug_mem_slave, which is an e_avalon_slave
   assign debug_mem_slave_clk = clk;
   assign debug_mem_slave_reset = ~reset_n;
-  assign D_ctrl_unimp_trap = D_op_div|D_op_divu|D_op_mul|D_op_muli|D_op_mulxss|D_op_mulxsu|D_op_mulxuu;
+  assign D_ctrl_unimp_trap = D_op_div|D_op_divu;
   assign E_ctrl_unimp_trap_nxt = D_ctrl_unimp_trap;
   always @(posedge clk or negedge reset_n)
     begin
@@ -10462,6 +10613,88 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
     end
 
 
+  assign D_ctrl_mul_lsw = D_op_muli|D_op_mul|D_op_opx_rsv47|D_op_opx_rsv55|D_op_opx_rsv63;
+  assign E_ctrl_mul_lsw_nxt = D_ctrl_mul_lsw;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          E_ctrl_mul_lsw <= 0;
+      else if (E_en)
+          E_ctrl_mul_lsw <= E_ctrl_mul_lsw_nxt;
+    end
+
+
+  assign M_ctrl_mul_lsw_nxt = E_ctrl_mul_lsw;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          M_ctrl_mul_lsw <= 0;
+      else if (M_en)
+          M_ctrl_mul_lsw <= M_ctrl_mul_lsw_nxt;
+    end
+
+
+  assign A_ctrl_mul_lsw_nxt = M_ctrl_mul_lsw;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_ctrl_mul_lsw <= 0;
+      else if (A_en)
+          A_ctrl_mul_lsw <= A_ctrl_mul_lsw_nxt;
+    end
+
+
+  assign W_ctrl_mul_lsw_nxt = A_ctrl_mul_lsw;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          W_ctrl_mul_lsw <= 0;
+      else if (W_en)
+          W_ctrl_mul_lsw <= W_ctrl_mul_lsw_nxt;
+    end
+
+
+  assign D_ctrl_mulx = D_op_mulxuu|D_op_opx_rsv15|D_op_mulxsu|D_op_mulxss;
+  assign E_ctrl_mulx_nxt = D_ctrl_mulx;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          E_ctrl_mulx <= 0;
+      else if (E_en)
+          E_ctrl_mulx <= E_ctrl_mulx_nxt;
+    end
+
+
+  assign M_ctrl_mulx_nxt = E_ctrl_mulx;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          M_ctrl_mulx <= 0;
+      else if (M_en)
+          M_ctrl_mulx <= M_ctrl_mulx_nxt;
+    end
+
+
+  assign A_ctrl_mulx_nxt = M_ctrl_mulx;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_ctrl_mulx <= 0;
+      else if (A_en)
+          A_ctrl_mulx <= A_ctrl_mulx_nxt;
+    end
+
+
+  assign W_ctrl_mulx_nxt = A_ctrl_mulx;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          W_ctrl_mulx <= 0;
+      else if (W_en)
+          W_ctrl_mulx <= W_ctrl_mulx_nxt;
+    end
+
+
   assign F_ctrl_implicit_dst_retaddr = F_op_call|F_op_op_rsv02;
   assign D_ctrl_implicit_dst_retaddr_nxt = F_ctrl_implicit_dst_retaddr;
   always @(posedge clk or negedge reset_n)
@@ -10515,11 +10748,6 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
 
   assign F_ctrl_implicit_dst_eretaddr = F_op_div|
     F_op_divu|
-    F_op_mul|
-    F_op_muli|
-    F_op_mulxss|
-    F_op_mulxsu|
-    F_op_mulxuu|
     F_op_crst|
     F_op_hbreak|
     F_op_intr|
@@ -10617,11 +10845,6 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
     D_op_opx_rsv44|
     D_op_div|
     D_op_divu|
-    D_op_mul|
-    D_op_muli|
-    D_op_mulxss|
-    D_op_mulxsu|
-    D_op_mulxuu|
     D_op_crst|
     D_op_hbreak|
     D_op_intr|
@@ -10876,11 +11099,6 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
     D_op_opx_rsv44|
     D_op_div|
     D_op_divu|
-    D_op_mul|
-    D_op_muli|
-    D_op_mulxss|
-    D_op_mulxsu|
-    D_op_mulxuu|
     D_op_crst|
     D_op_hbreak|
     D_op_intr|
@@ -13214,6 +13432,7 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
 
 
   assign F_ctrl_b_not_src = F_op_addi|
+    F_op_muli|
     F_op_andhi|
     F_op_orhi|
     F_op_xorhi|
@@ -13304,6 +13523,7 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
 
 
   assign F_ctrl_b_is_dst = F_op_addi|
+    F_op_muli|
     F_op_andhi|
     F_op_orhi|
     F_op_xorhi|
@@ -13469,6 +13689,7 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
 
 
   assign F_ctrl_src2_choose_imm = F_op_addi|
+    F_op_muli|
     F_op_andhi|
     F_op_orhi|
     F_op_xorhi|
@@ -13646,6 +13867,88 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
     end
 
 
+  assign D_ctrl_mul_src1_signed = D_op_mulxss|D_op_mulxsu;
+  assign E_ctrl_mul_src1_signed_nxt = D_ctrl_mul_src1_signed;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          E_ctrl_mul_src1_signed <= 0;
+      else if (E_en)
+          E_ctrl_mul_src1_signed <= E_ctrl_mul_src1_signed_nxt;
+    end
+
+
+  assign M_ctrl_mul_src1_signed_nxt = E_ctrl_mul_src1_signed;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          M_ctrl_mul_src1_signed <= 0;
+      else if (M_en)
+          M_ctrl_mul_src1_signed <= M_ctrl_mul_src1_signed_nxt;
+    end
+
+
+  assign A_ctrl_mul_src1_signed_nxt = M_ctrl_mul_src1_signed;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_ctrl_mul_src1_signed <= 0;
+      else if (A_en)
+          A_ctrl_mul_src1_signed <= A_ctrl_mul_src1_signed_nxt;
+    end
+
+
+  assign W_ctrl_mul_src1_signed_nxt = A_ctrl_mul_src1_signed;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          W_ctrl_mul_src1_signed <= 0;
+      else if (W_en)
+          W_ctrl_mul_src1_signed <= W_ctrl_mul_src1_signed_nxt;
+    end
+
+
+  assign D_ctrl_mul_src2_signed = D_op_mulxss;
+  assign E_ctrl_mul_src2_signed_nxt = D_ctrl_mul_src2_signed;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          E_ctrl_mul_src2_signed <= 0;
+      else if (E_en)
+          E_ctrl_mul_src2_signed <= E_ctrl_mul_src2_signed_nxt;
+    end
+
+
+  assign M_ctrl_mul_src2_signed_nxt = E_ctrl_mul_src2_signed;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          M_ctrl_mul_src2_signed <= 0;
+      else if (M_en)
+          M_ctrl_mul_src2_signed <= M_ctrl_mul_src2_signed_nxt;
+    end
+
+
+  assign A_ctrl_mul_src2_signed_nxt = M_ctrl_mul_src2_signed;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          A_ctrl_mul_src2_signed <= 0;
+      else if (A_en)
+          A_ctrl_mul_src2_signed <= A_ctrl_mul_src2_signed_nxt;
+    end
+
+
+  assign W_ctrl_mul_src2_signed_nxt = A_ctrl_mul_src2_signed;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          W_ctrl_mul_src2_signed <= 0;
+      else if (W_en)
+          W_ctrl_mul_src2_signed <= W_ctrl_mul_src2_signed_nxt;
+    end
+
+
   assign D_ctrl_bmx = 1'b0;
   assign E_ctrl_bmx_nxt = D_ctrl_bmx;
   always @(posedge clk or negedge reset_n)
@@ -13698,11 +14001,6 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
     D_op_opx_rsv44|
     D_op_div|
     D_op_divu|
-    D_op_mul|
-    D_op_muli|
-    D_op_mulxss|
-    D_op_mulxsu|
-    D_op_mulxuu|
     D_op_crst|
     D_op_hbreak|
     D_op_intr|
@@ -13911,7 +14209,16 @@ first_nios2_system_cpu_cpu_dc_victim_module first_nios2_system_cpu_cpu_dc_victim
     D_op_ror|
     D_op_opx_rsv42|
     D_op_opx_rsv43|
-    D_op_rdctl;
+    D_op_rdctl|
+    D_op_muli|
+    D_op_mul|
+    D_op_opx_rsv47|
+    D_op_opx_rsv55|
+    D_op_opx_rsv63|
+    D_op_mulxuu|
+    D_op_opx_rsv15|
+    D_op_mulxsu|
+    D_op_mulxss;
 
   assign E_ctrl_late_result_nxt = D_ctrl_late_result;
   always @(posedge clk or negedge reset_n)
