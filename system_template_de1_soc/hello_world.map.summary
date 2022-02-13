@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Sun Feb 13 19:25:09 2022
+Analysis & Synthesis Status : Successful - Sun Feb 13 20:09:58 2022
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : hello_world
 Top-level Entity Name : hello_world
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 2813
+Total registers : 2654
 Total pins : 47
 Total virtual pins : 0
-Total block memory bits : 588,672
-Total DSP Blocks : 4
+Total block memory bits : 310,144
+Total DSP Blocks : 3
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
 Total HSSI TX PCSs : 0

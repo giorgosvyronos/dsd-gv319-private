@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu' in SOPC Builder design 'first_nios2_system'
  * SOPC Builder design path: ../../first_nios2_system.sopcinfo
  *
- * Generated: Sun Feb 13 19:21:03 GMT 2022
+ * Generated: Sun Feb 13 20:16:35 GMT 2022
  */
 
 /*
@@ -80,7 +80,7 @@
 #define ALT_CPU_FREQ 50000000
 #define ALT_CPU_HARDWARE_DIVIDE_PRESENT 0
 #define ALT_CPU_HARDWARE_MULTIPLY_PRESENT 1
-#define ALT_CPU_HARDWARE_MULX_PRESENT 1
+#define ALT_CPU_HARDWARE_MULX_PRESENT 0
 #define ALT_CPU_HAS_DEBUG_CORE 1
 #define ALT_CPU_HAS_DEBUG_STUB
 #define ALT_CPU_HAS_EXTRA_EXCEPTION_INFO
@@ -120,7 +120,7 @@
 #define NIOS2_FLUSHDA_SUPPORTED
 #define NIOS2_HARDWARE_DIVIDE_PRESENT 0
 #define NIOS2_HARDWARE_MULTIPLY_PRESENT 1
-#define NIOS2_HARDWARE_MULX_PRESENT 1
+#define NIOS2_HARDWARE_MULX_PRESENT 0
 #define NIOS2_HAS_DEBUG_CORE 1
 #define NIOS2_HAS_DEBUG_STUB
 #define NIOS2_HAS_EXTRA_EXCEPTION_INFO
@@ -318,7 +318,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1644779475
+#define SYSID_TIMESTAMP 1644782928
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

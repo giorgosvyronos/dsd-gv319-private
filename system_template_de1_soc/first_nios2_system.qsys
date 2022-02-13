@@ -240,7 +240,7 @@
   <parameter name="icache_burstType" value="None" />
   <parameter name="icache_numTCIM" value="0" />
   <parameter name="icache_ramBlockType" value="Automatic" />
-  <parameter name="icache_size" value="65536" />
+  <parameter name="icache_size" value="32768" />
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Fast" />
   <parameter name="instAddrWidth" value="25" />
@@ -273,7 +273,7 @@
   <parameter name="mpu_useLimit" value="false" />
   <parameter name="mpx_enabled" value="false" />
   <parameter name="mul_32_impl" value="2" />
-  <parameter name="mul_64_impl" value="1" />
+  <parameter name="mul_64_impl" value="0" />
   <parameter name="mul_shift_choice" value="1" />
   <parameter name="ocimem_ramBlockType" value="Automatic" />
   <parameter name="ocimem_ramInit" value="false" />
@@ -442,7 +442,7 @@
   <parameter name="casLatency" value="3" />
   <parameter name="clockRate" value="50000000" />
   <parameter name="columnWidth" value="8" />
-  <parameter name="componentName" value="$${FILENAME}_sdram" />
+  <parameter name="componentName">first_nios2_system_sdram</parameter>
   <parameter name="dataWidth" value="16" />
   <parameter name="generateSimulationModel" value="false" />
   <parameter name="initNOPDelay" value="0.0" />

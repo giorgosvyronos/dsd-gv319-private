@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 20.1 720 (Future versions may contain additional information.) -->
- <!-- 2022.02.13.19:24:04 -->
+ <!-- 2022.02.13.20:08:48 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1644780244</value>
+  <value>1644782928</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -514,7 +514,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.HARDWARE_MULX_PRESENT</name>
-   <value>1</value>
+   <value>0</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.HAS_DEBUG_CORE</name>
@@ -546,7 +546,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.ICACHE_SIZE</name>
-   <value>65536</value>
+   <value>32768</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.INITDA_SUPPORTED</name>
@@ -629,10 +629,6 @@ the requested settings for a module instance. -->
    <value>1</value>
   </assignment>
   <assignment>
-   <name>embeddedsw.dts.params.altr,has-mulx</name>
-   <value>1</value>
-  </assignment>
-  <assignment>
    <name>embeddedsw.dts.params.altr,implementation</name>
    <value>"fast"</value>
   </assignment>
@@ -658,7 +654,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.icache-size</name>
-   <value>65536</value>
+   <value>32768</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -1154,7 +1150,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="multiplierType">
    <type>java.lang.String</type>
-   <value>mul_fast64</value>
+   <value>mul_fast32</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -1178,7 +1174,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="mul_64_impl">
    <type>int</type>
-   <value>1</value>
+   <value>0</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1266,7 +1262,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="icache_size">
    <type>int</type>
-   <value>65536</value>
+   <value>32768</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -6961,7 +6957,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1644780244</value>
+   <value>1644782928</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -6981,7 +6977,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1644780244</value>
+   <value>1644782928</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -6997,7 +6993,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1644780244</value>
+   <value>1644782928</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
