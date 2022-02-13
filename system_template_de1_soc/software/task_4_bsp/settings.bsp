@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Feb 11, 2022 7:19:13 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1644607153307</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Feb 13, 2022 6:21:46 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1644776506733</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/e2/gv319-repo/system_template_de1_soc/software/task_4_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../first_nios2_system.sopcinfo</SopcDesignFile>

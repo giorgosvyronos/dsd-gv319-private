@@ -18,17 +18,16 @@
 
 
 // Test case 2
-#define step 1/8.0
-#define N 2041
+//#define step 1/8.0
+//#define N 2041
 
 // Test case 3
-//#define step 1/1024.0
-//#define N 261121
+#define step 1/1024.0
+#define N 261121
 
-// Test case 4
-//#define N 2323
-//#define RANDSEED 334
-
+//float taylor_cos(float x){
+//	return (1 - (x*x/2) + (x*x*x*x/24) - x*x*x*x*x*x/720 + x*x*x*x*x*x*x*x/40320); //up to power of 8.
+//}
 
 
 // Generates the vector x and stores it in the memory
@@ -38,17 +37,8 @@ void generateVector(float x[N]){
 	for(i=1;i<N;i++){
 		x[i] = x[i-1] + step;
 	}
-}
 
-//void generateRandomVector(float x[N])
-//{
-//	int i;
-//	srand(RANDSEED);
-//	for (i=0; i<N; i++)
-//	{
-//		x[i] = ((float) rand() / (float) RAND_MAX) * MAXVAL;
-//	}
-//}
+}
 
 float sumVector(float x[], int M){
 	//YOUR CODE GOES HERE
@@ -69,7 +59,6 @@ int main()
 	float y;
 
 	generateVector(x);
-
 	//The following is used for timing
 	char buf[100];
 	clock_t exec_t1, exec_t2;

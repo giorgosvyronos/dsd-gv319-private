@@ -1,5 +1,5 @@
 Assembler report for hello_world
-Fri Feb 11 19:17:34 2022
+Sun Feb 13 19:30:00 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -39,7 +39,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Feb 11 19:17:34 2022 ;
+; Assembler Status      ; Successful - Sun Feb 13 19:30:00 2022 ;
 ; Revision Name         ; hello_world                           ;
 ; Top-level Entity Name ; hello_world                           ;
 ; Family                ; Cyclone V                             ;
@@ -79,8 +79,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------+---------------------------------------+
 ; Option         ; Setting                               ;
 +----------------+---------------------------------------+
-; JTAG usercode  ; 0x0283F589                            ;
-; Checksum       ; 0x0283F589                            ;
+; JTAG usercode  ; 0x0283F4F8                            ;
+; Checksum       ; 0x0283F4F8                            ;
 +----------------+---------------------------------------+
 
 
@@ -90,16 +90,16 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Fri Feb 11 19:17:25 2022
+    Info: Processing started: Sun Feb 13 19:29:49 2022
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off hello_world -c hello_world
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info (115017): Design contains a time-limited core -- only a single, time-limited programming file can be generated
 Warning (210042): Can't convert time-limited SOF into POF, HEX File, TTF, or RBF
 Info: Quartus Prime Assembler was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 568 megabytes
-    Info: Processing ended: Fri Feb 11 19:17:34 2022
-    Info: Elapsed time: 00:00:09
+    Info: Peak virtual memory: 589 megabytes
+    Info: Processing ended: Sun Feb 13 19:30:00 2022
+    Info: Elapsed time: 00:00:11
     Info: Total CPU time (on all processors): 00:00:08
 
 
