@@ -49,7 +49,7 @@ module first_nios2_system_sysid (
 
   wire    [ 31: 0] readdata;
   //control_slave, which is an e_avalon_slave
-  assign readdata = address ? 1644782928 : 0;
+  assign readdata = address ? 1646499338 : 0;
 
 endmodule
 

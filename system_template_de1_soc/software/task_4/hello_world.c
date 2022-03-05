@@ -22,41 +22,44 @@
 //#define N 2041
 
 // Test case 3
-#define step 1/1024.0
-#define N 261121
-
-//float taylor_cos(float x){
-//	return (1 - (x*x/2) + (x*x*x*x/24) - x*x*x*x*x*x/720 + x*x*x*x*x*x*x*x/40320); //up to power of 8.
-//}
-
+//#define step 1/1024.0
+//#define N 261121
 
 // Generates the vector x and stores it in the memory
-void generateVector(float x[N]){
+void generateVector(float x[261121]){
 	int i;
 	x[0] = 0;
-	for(i=1;i<N;i++){
-		x[i] = x[i-1] + step;
+	for(i=1;i<261121;i++){
+		x[i] = x[i-1] + 0.0009765625;
 	}
 
 }
 
-float sumVector(float x[], int M){
+double sumVector(float x[261121]){
 	//YOUR CODE GOES HERE
-	float y=0;
-	for(int i=0;i<M;i++){
-		y += 0.5*x[i] + x[i]*x[i]*cos((x[i]-128)/128);
+	double y1 = 0;
+	double y2 = 0;
+	double a = 0;
+	for(int i=0;i<261121;i++){
+		y1 += x[i];
 	}
-	return y;
+	for(int i=0;i<261121;i++){
+//		a = x[i];
+//		x[i] *= x[i];
+//		x[i] *= cos((a-128)/128);
+		y2 += x[i]*(x[i]*(cosf((x[i]-128)/128)));
+	}
+	return 0.5*y1 + y2;
 }
 int main()
 {
-	printf("Task 4\n");
+	printf("Code Optimisation 11\n");
 
 	//Define input vector
-	float x[N];
+	float x[261121];
 
 	//Returned result
-	float y;
+	double y;
 
 	generateVector(x);
 	//The following is used for timing
@@ -67,12 +70,12 @@ int main()
 	exec_t1 = times(NULL); // get system time before starting the process
 
 	// The code that you want to time goes here
-	y = sumVector(x,N);
+	y = sumVector(x);
 
 	// till here
 	exec_t2 = times(NULL); // get system time after finishing the process
 
-	printf("Result: %f\n", y);
+	printf("Result: %0.4f\n", y);
 	gcvt((exec_t2 - exec_t1), 10 ,buf);
 
 	alt_putstr("proc time = "); alt_putstr(buf); alt_putstr(" ticks \n");

@@ -1,0 +1,223 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "graphic" (version "1.4"))
+(pin
+	(input)
+	(rect -168 192 0 208)
+	(text "INPUT" (rect 125 0 154 10)(font "Arial" (font_size 6)))
+	(text "datab[31..0]" (rect 5 0 67 13)(font "Intel Clear" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 149 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -168 176 0 192)
+	(text "INPUT" (rect 125 0 154 10)(font "Arial" (font_size 6)))
+	(text "dataa[31..0]" (rect 5 0 64 11)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 149 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(output)
+	(rect 272 176 448 192)
+	(text "OUTPUT" (rect 1 0 41 10)(font "Arial" (font_size 6)))
+	(text "result[31..0]" (rect 90 0 151 13)(font "Intel Clear" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(symbol
+	(rect 72 160 224 320)
+	(text "ALTFP_ADD_SUB" (rect 24 0 157 16)(font "Arial" (font_size 10)))
+	(text "inst1" (rect 11 144 35 157)(font "Intel Clear" ))
+	(port
+		(pt 72 160)
+		(input)
+		(text "aclr" (rect 64 117 86 130)(font "Arial" (font_size 8)))
+		(text "aclr" (rect 64 120 77 142)(font "Arial" (font_size 8))(vertical))
+		(line (pt 72 160)(pt 72 144))
+		(unused)
+	)
+	(port
+		(pt 0 60)
+		(input)
+		(text "add_sub" (rect 21 53 70 66)(font "Arial" (font_size 8)))
+		(text "add_sub" (rect 21 53 70 66)(font "Arial" (font_size 8)))
+		(line (pt 0 60)(pt 16 60))
+	)
+	(port
+		(pt 0 88)
+		(input)
+		(text "clk_en" (rect 21 81 58 94)(font "Arial" (font_size 8)))
+		(text "clk_en" (rect 21 81 58 94)(font "Arial" (font_size 8)))
+		(line (pt 0 88)(pt 16 88))
+		(unused)
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "clock" (rect 20 106 51 119)(font "Arial" (font_size 8)))
+		(text "clock" (rect 20 106 51 119)(font "Arial" (font_size 8)))
+		(line (pt 0 112)(pt 16 112))
+		(unused)
+	)
+	(port
+		(pt 0 24)
+		(input)
+		(text "dataa[(WIDTH_EXP + WIDTH_MAN)..0]" (rect 20 18 246 31)(font "Arial" (font_size 8)))
+		(text "dataa[]" (rect 20 18 60 31)(font "Arial" (font_size 8)))
+		(line (pt 0 24)(pt 16 24)(line_width 3))
+	)
+	(port
+		(pt 0 40)
+		(input)
+		(text "datab[(WIDTH_EXP + WIDTH_MAN)..0]" (rect 20 34 246 47)(font "Arial" (font_size 8)))
+		(text "datab[]" (rect 20 34 60 47)(font "Arial" (font_size 8)))
+		(line (pt 0 40)(pt 16 40)(line_width 3))
+	)
+	(port
+		(pt 152 88)
+		(output)
+		(text "nan" (rect 115 113 137 126)(font "Arial" (font_size 8)))
+		(text "nan" (rect 113 81 135 94)(font "Arial" (font_size 8)))
+		(line (pt 152 88)(pt 136 88))
+		(unused)
+	)
+	(port
+		(pt 152 40)
+		(output)
+		(text "overflow" (rect 87 33 135 46)(font "Arial" (font_size 8)))
+		(text "overflow" (rect 91 33 139 46)(font "Arial" (font_size 8)))
+		(line (pt 152 40)(pt 136 40))
+		(unused)
+	)
+	(port
+		(pt 152 24)
+		(output)
+		(text "result[(WIDTH_EXP + WIDTH_MAN)..0]" (rect 95 19 320 32)(font "Arial" (font_size 8)))
+		(text "result[]" (rect 99 19 137 32)(font "Arial" (font_size 8)))
+		(line (pt 152 24)(pt 136 24)(line_width 3))
+	)
+	(port
+		(pt 152 56)
+		(output)
+		(text "underflow" (rect 81 48 137 61)(font "Arial" (font_size 8)))
+		(text "underflow" (rect 84 48 140 61)(font "Arial" (font_size 8)))
+		(line (pt 152 56)(pt 136 56))
+		(unused)
+	)
+	(port
+		(pt 152 72)
+		(output)
+		(text "zero" (rect 108 65 133 78)(font "Arial" (font_size 8)))
+		(text "zero" (rect 110 65 135 78)(font "Arial" (font_size 8)))
+		(line (pt 152 72)(pt 136 72))
+		(unused)
+	)
+	(parameter
+		"WIDTH_EXP"
+		"8"
+		"The width of exponent field"
+		(type "PARAMETER_UNSIGNED_DEC")	)
+	(parameter
+		"WIDTH_MAN"
+		"23"
+		"The width of mantissa field"
+		(type "PARAMETER_UNSIGNED_DEC")	)
+	(parameter
+		"PIPELINE"
+		"14"
+		"Specify the clock cycles needed to produce the output"
+		"7" "8" 
+	)
+	(parameter
+		"ROUNDING"
+		"TO_NEAREST"
+		"Specify the rounding mode"
+	)
+	(drawing
+		(line (pt 17 143)(pt 135 143))
+		(line (pt 16 16)(pt 135 16))
+		(line (pt 135 16)(pt 135 143))
+		(line (pt 17 16)(pt 17 143))
+	)
+	(annotation_block (parameter)(rect 224 80 458 155))
+)
+(symbol
+	(rect -48 240 -16 272)
+	(text "GND" (rect 8 16 30 26)(font "Arial" (font_size 6)))
+	(text "inst" (rect 3 21 21 32)(font "Arial" )(invisible))
+	(port
+		(pt 16 0)
+		(output)
+		(text "1" (rect 18 0 26 11)(font "Courier New" (bold))(invisible))
+		(text "1" (rect 18 0 26 11)(font "Courier New" (bold))(invisible))
+		(line (pt 16 8)(pt 16 0))
+	)
+	(drawing
+		(line (pt 8 8)(pt 16 16))
+		(line (pt 16 16)(pt 24 8))
+		(line (pt 8 8)(pt 24 8))
+	)
+)
+(connector
+	(pt 0 184)
+	(pt 72 184)
+	(bus)
+)
+(connector
+	(pt 0 200)
+	(pt 72 200)
+	(bus)
+)
+(connector
+	(pt 224 184)
+	(pt 272 184)
+	(bus)
+)
+(connector
+	(pt 72 220)
+	(pt -32 240)
+)

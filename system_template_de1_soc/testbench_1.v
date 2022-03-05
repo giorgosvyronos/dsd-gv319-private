@@ -2,6 +2,7 @@
 module tb ();
 
 	//Inputs to DUT are reg type
+	reg clk;
 	reg [31:0] dataa;
 	reg [31:0] datab; 
 
@@ -10,7 +11,8 @@ module tb ();
 
 	//Instantiate the DUT
 	//mul refers to the verilog module defined by the LPM_MULT ip
-	mul unit(
+	fp_add_sub unit(
+		.clock(clk),
 		.dataa(dataa),
 		.datab(datab), 
 		.result(result)
@@ -18,8 +20,8 @@ module tb ();
 
 	// ---- If a clock is required, see below ----
 	// //Create a 50MHz clock
-	// always
-	// 	#10 clk = ~clk;
+	 always
+	 	#10 clk = ~clk;
 	// -----------------------
 
 	//Initial Block
@@ -28,10 +30,10 @@ module tb ();
 		$display($time, " << Starting Simulation >> ");
 		
 		// intialise/set input
-		// clk = 1'b0;
+		clk = 1'b0;
 		
 		// If using a clock
-		// @(posedge clk); 
+		@(posedge clk); 
 		
 		// Wait 10 cycles (corresponds to timescale at the top) 
 		#10
